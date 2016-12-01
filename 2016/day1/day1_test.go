@@ -18,3 +18,8 @@ func ExampleDay1_3() {
 	fmt.Println(move("R5, L5, R5, R3"))
 	// Output: 12
 }
+
+func ExampleDay1_4() {
+	fmt.Println(locate("R8, R4, R4, R8"))
+	// Output: 4
+}
