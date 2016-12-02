@@ -3,7 +3,7 @@ package day2
 import (
 	"fmt"
 
-	"github.com/domdavis/adventofcode/2016/day1/day2/key"
+	"github.com/domdavis/adventofcode/2016/day2/key"
 )
 
 const input = `ULL

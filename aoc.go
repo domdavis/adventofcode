@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/domdavis/adventofcode/2016/day1"
-	"github.com/domdavis/adventofcode/2016/day1/day2"
+	"github.com/domdavis/adventofcode/2016/day2"
 )
 
 var year = flag.Int("year", 0, "The year to display")
