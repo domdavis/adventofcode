@@ -3,7 +3,7 @@ package key
 import "strings"
 
 type key struct {
-	Value string
+	v     string
 	up    *key
 	down  *key
 	left  *key
@@ -24,7 +24,7 @@ func Decode(start *key, input string) string {
 
 	for _, seq := range strings.Split(input, "\n") {
 		k = find(k, strings.TrimSpace(seq))
-		code = code + k.Value
+		code = code + k.v
 	}
 
 	if code == "" {
@@ -60,30 +60,46 @@ func find(k *key, code string) *key {
 }
 
 func init() {
+	var emptyKeySlot *key
+
 	square := [][]*key{
-		{&key{Value: "1"}, &key{Value: "2"}, &key{Value: "3"}},
-		{&key{Value: "4"}, &key{Value: "5"}, &key{Value: "6"}},
-		{&key{Value: "7"}, &key{Value: "8"}, &key{Value: "9"}},
+		{&key{v: "1"}, &key{v: "2"}, &key{v: "3"}},
+		{&key{v: "4"}, &key{v: "5"}, &key{v: "6"}},
+		{&key{v: "7"}, &key{v: "8"}, &key{v: "9"}},
+	}
+
+	diamond := [][]*key{
+		{emptyKeySlot, emptyKeySlot, &key{v: "1"}, emptyKeySlot, emptyKeySlot},
+		{emptyKeySlot, &key{v: "2"}, &key{v: "3"}, &key{v: "4"}, emptyKeySlot},
+		{&key{v: "5"}, &key{v: "6"}, &key{v: "7"}, &key{v: "8"}, &key{v: "9"}},
+		{emptyKeySlot, &key{v: "A"}, &key{v: "B"}, &key{v: "C"}, emptyKeySlot},
+		{emptyKeySlot, emptyKeySlot, &key{v: "D"}, emptyKeySlot, emptyKeySlot},
 	}
 
 	arrange(square)
+	arrange(diamond)
 
 	SquareStart = square[1][1]
+	DiamondStart = diamond[2][0]
 }
 
 func arrange(k [][]*key) {
 	for y := 0; y < len(k); y++ {
 		for x := 0; x < len(k[y]); x++ {
-			if y-1 >= 0 && k[y-1][x] != nil {
+			if k[x][y] == nil {
+				continue
+			}
+
+			if y-1 >= 0 {
 				k[y][x].up = k[y-1][x]
 			}
-			if y+1 < len(k) && k[y+1][x] != nil {
+			if y+1 < len(k) {
 				k[y][x].down = k[y+1][x]
 			}
-			if x-1 >= 0 && k[y][x-1] != nil {
+			if x-1 >= 0 {
 				k[y][x].left = k[y][x-1]
 			}
-			if x+1 < len(k[y]) && k[y][x+1] != nil {
+			if x+1 < len(k[y]) {
 				k[y][x].right = k[y][x+1]
 			}
 		}
