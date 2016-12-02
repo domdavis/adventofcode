@@ -1,7 +1,13 @@
 package day2
 
-import "github.com/domdavis/adventofcode/2016/day1/day2/key"
+import (
+	"fmt"
+
+	"github.com/domdavis/adventofcode/2016/day1/day2/key"
+)
 
 func Solution() string {
-	return key.Decode(key.SquareStart, data)
+	return fmt.Sprintf("Part 1: %s, Part 2: %s",
+		key.Decode(key.SquareStart, data),
+		key.Decode(key.DiamondStart, data))
 }
