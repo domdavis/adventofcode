@@ -1,22 +1,22 @@
 package key
 
 type key struct {
-	value int
+	Value int
 	up    *key
 	down  *key
 	left  *key
 	right *key
 }
 
-var one = &key{value: 1}
-var two = &key{value: 2}
-var three = &key{value: 3}
-var four = &key{value: 4}
-var five = &key{value: 5}
-var six = &key{value: 6}
-var seven = &key{value: 7}
-var eight = &key{value: 8}
-var nine = &key{value: 9}
+var one = &key{Value: 1}
+var two = &key{Value: 2}
+var three = &key{Value: 3}
+var four = &key{Value: 4}
+var five = &key{Value: 5}
+var six = &key{Value: 6}
+var seven = &key{Value: 7}
+var eight = &key{Value: 8}
+var nine = &key{Value: 9}
 
 var Start = five
 
@@ -25,11 +25,11 @@ const Down = "D"
 const Left = "L"
 const Right = "R"
 
-func Find(k *key, code string) int {
+func Find(k *key, code string) *key {
 	var last *key
 	current := k
 
-	for i := 0; i < len(code) && current != nil; i++ {
+	for i := 0; i < len(code); i++ {
 		last = current
 		switch string(code[i]) {
 		case Up:
@@ -41,9 +41,13 @@ func Find(k *key, code string) int {
 		case Right:
 			current = current.right
 		}
+
+		if current == nil {
+			current = last
+		}
 	}
 
-	return last.value
+	return current
 }
 
 func init() {
@@ -70,5 +74,5 @@ func init() {
 	eight.right = nine
 	eight.left = seven
 	nine.up = six
-	nine.right = eight
+	nine.left = eight
 }

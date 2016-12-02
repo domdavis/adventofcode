@@ -17,7 +17,7 @@ var day = flag.Int("day", 0, "The day to display")
 var solutions = map[int]map[int]func() string{
 	2016: {
 		1: day1.Solution,
-		2: day2.Solution(),
+		2: day2.Solution,
 	},
 }
 
