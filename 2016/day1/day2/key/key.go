@@ -27,6 +27,10 @@ func Decode(start *key, input string) string {
 		code = code + k.Value
 	}
 
+	if code == "" {
+		code = "Nothing found!"
+	}
+
 	return code
 }
 
@@ -56,49 +60,32 @@ func find(k *key, code string) *key {
 }
 
 func init() {
-	init_square()
-	init_diamond()
+	square := [][]*key{
+		{&key{Value: "1"}, &key{Value: "2"}, &key{Value: "3"}},
+		{&key{Value: "4"}, &key{Value: "5"}, &key{Value: "6"}},
+		{&key{Value: "7"}, &key{Value: "8"}, &key{Value: "9"}},
+	}
+
+	arrange(square)
+
+	SquareStart = square[1][1]
 }
 
-func init_square() {
-	one := &key{Value: "1"}
-	two := &key{Value: "2"}
-	three := &key{Value: "3"}
-	four := &key{Value: "4"}
-	five := &key{Value: "5"}
-	six := &key{Value: "6"}
-	seven := &key{Value: "7"}
-	eight := &key{Value: "8"}
-	nine := &key{Value: "9"}
-
-	one.right = two
-	one.down = four
-	two.left = one
-	two.right = three
-	two.down = five
-	three.left = two
-	three.down = six
-	four.up = one
-	four.right = five
-	four.down = seven
-	five.up = two
-	five.right = six
-	five.down = eight
-	five.left = four
-	six.up = three
-	six.down = nine
-	six.left = five
-	seven.up = four
-	seven.right = eight
-	eight.up = five
-	eight.right = nine
-	eight.left = seven
-	nine.up = six
-	nine.left = eight
-
-	SquareStart = five
-}
-
-func init_diamond() {
-
+func arrange(k [][]*key) {
+	for y := 0; y < len(k); y++ {
+		for x := 0; x < len(k[y]); x++ {
+			if y-1 >= 0 && k[y-1][x] != nil {
+				k[y][x].up = k[y-1][x]
+			}
+			if y+1 < len(k) && k[y+1][x] != nil {
+				k[y][x].down = k[y+1][x]
+			}
+			if x-1 >= 0 && k[y][x-1] != nil {
+				k[y][x].left = k[y][x-1]
+			}
+			if x+1 < len(k[y]) && k[y][x+1] != nil {
+				k[y][x].right = k[y][x+1]
+			}
+		}
+	}
 }

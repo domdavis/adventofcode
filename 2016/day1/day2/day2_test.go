@@ -1,6 +1,10 @@
 package day2
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/domdavis/adventofcode/2016/day1/day2/key"
+)
 
 func ExampleSolution_1() {
 	input :=
@@ -8,6 +12,6 @@ func ExampleSolution_1() {
 RRDDD
 LURDL
 UUUUD`
-	fmt.Println(decode(input))
+	fmt.Println(key.Decode(key.SquareStart, input))
 	// Output: 1985
 }
