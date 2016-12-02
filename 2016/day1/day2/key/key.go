@@ -1,31 +1,36 @@
 package key
 
+import "strings"
+
 type key struct {
-	Value int
+	Value string
 	up    *key
 	down  *key
 	left  *key
 	right *key
 }
 
-var one = &key{Value: 1}
-var two = &key{Value: 2}
-var three = &key{Value: 3}
-var four = &key{Value: 4}
-var five = &key{Value: 5}
-var six = &key{Value: 6}
-var seven = &key{Value: 7}
-var eight = &key{Value: 8}
-var nine = &key{Value: 9}
-
-var Start = five
+var SquareStart *key
+var DiamondStart *key
 
 const Up = "U"
 const Down = "D"
 const Left = "L"
 const Right = "R"
 
-func Find(k *key, code string) *key {
+func Decode(start *key, input string) string {
+	code := ""
+	k := start
+
+	for _, seq := range strings.Split(input, "\n") {
+		k = find(k, strings.TrimSpace(seq))
+		code = code + k.Value
+	}
+
+	return code
+}
+
+func find(k *key, code string) *key {
 	var last *key
 	current := k
 
@@ -51,6 +56,21 @@ func Find(k *key, code string) *key {
 }
 
 func init() {
+	init_square()
+	init_diamond()
+}
+
+func init_square() {
+	one := &key{Value: "1"}
+	two := &key{Value: "2"}
+	three := &key{Value: "3"}
+	four := &key{Value: "4"}
+	five := &key{Value: "5"}
+	six := &key{Value: "6"}
+	seven := &key{Value: "7"}
+	eight := &key{Value: "8"}
+	nine := &key{Value: "9"}
+
 	one.right = two
 	one.down = four
 	two.left = one
@@ -75,4 +95,10 @@ func init() {
 	eight.left = seven
 	nine.up = six
 	nine.left = eight
+
+	SquareStart = five
+}
+
+func init_diamond() {
+
 }
