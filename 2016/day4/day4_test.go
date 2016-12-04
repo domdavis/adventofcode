@@ -35,7 +35,7 @@ func ExampleSolution_5() {
 	a-b-c-d-e-f-g-h-987[abcde]
 	not-a-real-room-404[oarel]
 	totally-real-room-200[decoy]`
-	fmt.Println(sum(input))
+	fmt.Println(sum(real(input)))
 	// Output: 1514
 }
 

@@ -9,17 +9,29 @@ import (
 )
 
 func Solution() string {
-	return strconv.Itoa(sum(data))
+	rooms := real(data)
+	return strconv.Itoa(sum(rooms))
 }
 
-func sum(input string) int {
-	total := 0
-	for _, code := range strings.Split(input, "\n") {
-		room := room.New(code)
+func real(input string) room.Rooms {
+	rooms := room.Rooms{}
 
-		if room.Real {
-			total += room.Sector
+	for _, code := range strings.Split(input, "\n") {
+		r := room.New(code)
+
+		if r.Real {
+			rooms = append(rooms, r)
 		}
+	}
+
+	return rooms
+}
+
+func sum(rooms room.Rooms) int {
+	total := 0
+
+	for _, r := range rooms {
+		total += r.Sector
 	}
 
 	return total

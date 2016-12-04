@@ -14,6 +14,8 @@ type room struct {
 	Sector int
 }
 
+type Rooms []*room
+
 var format = regexp.MustCompile(`([a-z-]+)(\d+)\[([a-z]+)]`)
 
 func New(code string) *room {
