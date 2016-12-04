@@ -50,3 +50,9 @@ func ExampleSolution_7() {
 	fmt.Println(room.New(input).Real)
 	// Output: true
 }
+
+func ExampleSolution_8() {
+	input := "qzmt-zixmtkozy-ivhz-343"
+	fmt.Println(room.New(input).Name())
+	// Output: very encrypted name
+}

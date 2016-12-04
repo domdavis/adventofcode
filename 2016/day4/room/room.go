@@ -31,6 +31,10 @@ func New(code string) *room {
 	return &room{Real: check(m[1], m[3]), Sector: sector}
 }
 
+func (r *room) Name() string {
+	return ""
+}
+
 func check(code, checksum string) bool {
 	counts := make(map[string]int)
 	letters := strings.Split(strings.Join(strings.Split(code, "-"), ""), "")
