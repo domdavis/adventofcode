@@ -44,3 +44,9 @@ func ExampleSolution_6() {
 	fmt.Println(room.New(input).Real)
 	// Output: true
 }
+
+func ExampleSolution_7() {
+	input := "aa-cc-bb-dd-ee-ff-gg-1[abcde]"
+	fmt.Println(room.New(input).Real)
+	// Output: true
+}

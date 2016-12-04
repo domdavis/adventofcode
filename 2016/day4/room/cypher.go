@@ -16,7 +16,7 @@ func (c cypherText) Swap(i, j int) {
 }
 
 func (c cypherText) Less(i, j int) bool {
-	if c[i].count == 1 && c[j].count == 1 {
+	if c[i].count == c[j].count {
 		return c[i].char < c[j].char
 	}
 
