@@ -52,7 +52,7 @@ func ExampleSolution_7() {
 }
 
 func ExampleSolution_8() {
-	input := "qzmt-zixmtkozy-ivhz-343"
+	input := "qzmt-zixmtkozy-ivhz-343[i]"
 	fmt.Println(room.New(input).Name())
 	// Output: very encrypted name
 }

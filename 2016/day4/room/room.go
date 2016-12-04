@@ -9,6 +9,7 @@ import (
 )
 
 type room struct {
+	Code   string
 	Real   bool
 	Sector int
 }
@@ -28,11 +29,24 @@ func New(code string) *room {
 		panic(fmt.Sprintf("Invalid code: %s\n", code))
 	}
 
-	return &room{Real: check(m[1], m[3]), Sector: sector}
+	return &room{Code: m[1], Real: check(m[1], m[3]), Sector: sector}
 }
 
 func (r *room) Name() string {
-	return ""
+	name := []byte(r.Code)
+	for i := 0; i < r.Sector; i++ {
+		for j := 0; j < len(name); j++ {
+			c := name[j]
+			switch {
+			case 'a' <= c && c <= 'z':
+				name[j] = (c-'a'+1)%26 + 'a'
+			default:
+				name[j] = ' '
+			}
+		}
+	}
+
+	return string(name)
 }
 
 func check(code, checksum string) bool {
