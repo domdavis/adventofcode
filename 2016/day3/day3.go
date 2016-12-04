@@ -11,9 +11,8 @@ import (
 var matcher = regexp.MustCompile(`\s*([\d]+)\s+([\d]+)\s+([\d]+)`)
 
 func Solution() string {
-	return fmt.Sprintf("Part 1: %s, Part 2: %s",
-		strconv.Itoa(horizontal(data)),
-		strconv.Itoa(vertical(data)))
+	return fmt.Sprintf("Part 1: %d, Part 2: %d", horizontal(data),
+		vertical(data))
 }
 
 func horizontal(input string) int {
