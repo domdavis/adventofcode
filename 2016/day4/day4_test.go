@@ -38,3 +38,9 @@ func ExampleSolution_5() {
 	fmt.Println(sum(input))
 	// Output: 1514
 }
+
+func ExampleSolution_6() {
+	input := "hqcfqwydw-fbqijys-whqii-huiuqhsx-660[qhiwf]"
+	fmt.Println(room.New(input).Real)
+	// Output: true
+}
