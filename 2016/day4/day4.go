@@ -3,14 +3,23 @@ package day4
 import (
 	"strings"
 
-	"strconv"
+	"fmt"
 
 	"github.com/domdavis/adventofcode/2016/day4/room"
 )
 
 func Solution() string {
 	rooms := real(data)
-	return strconv.Itoa(sum(rooms))
+	sector := 0
+
+	for _, r := range rooms {
+		if strings.HasPrefix(r.Name(), "northpole object storage") {
+			sector = r.Sector
+			break
+		}
+	}
+
+	return fmt.Sprintf("Part 1: %d, Part 2: %d", sum(rooms), sector)
 }
 
 func real(input string) room.Rooms {
