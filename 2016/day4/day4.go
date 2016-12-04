@@ -3,11 +3,13 @@ package day4
 import (
 	"strings"
 
+	"strconv"
+
 	"github.com/domdavis/adventofcode/2016/day4/room"
 )
 
 func Solution() string {
-	return "Not yet solved"
+	return strconv.Itoa(sum(data))
 }
 
 func sum(input string) int {
