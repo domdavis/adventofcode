@@ -12,7 +12,8 @@ const match = "00000"
 const length = 8
 
 func Solution() string {
-	return door1("abbhdwsy")
+	return fmt.Sprintf("Part 1: %s, Part 2: %s",
+		door1("abbhdwsy"), door2("abbhdwsy"))
 }
 
 func door1(input string) string {
