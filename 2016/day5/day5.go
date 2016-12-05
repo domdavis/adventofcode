@@ -3,34 +3,39 @@ package day5
 import (
 	"crypto/md5"
 	"fmt"
+	"math"
 	"strings"
 )
 
+const match = "00000"
+
 func Solution() string {
-	return decode("abbhdwsy")
+	return door1("abbhdwsy")
 }
 
-const prefix = "00000"
-
-func decode(input string) string {
+func door1(input string) string {
+	var r string
 	suffix := int32(0)
 	code := ""
 
 	for i := 0; i < 8; i++ {
-		searching := true
-
-		for searching {
-			data := []byte(fmt.Sprintf("%s%d", input, suffix))
-			r := fmt.Sprintf("%x", md5.Sum(data))
-			suffix++
-
-			if strings.HasPrefix(r, prefix) {
-				code = fmt.Sprintf("%s%s", code, string(r[5]))
-				searching = false
-			}
-		}
-
+		r, suffix = decode(input, suffix)
+		code = fmt.Sprintf("%s%s", code, string(r[len(match)]))
 	}
 
-	return string(code)
+	return code
+}
+
+func decode(prefix string, suffix int32) (string, int32) {
+	for suffix < math.MaxInt32 {
+		data := []byte(fmt.Sprintf("%s%d", prefix, suffix))
+		r := fmt.Sprintf("%x", md5.Sum(data))
+		suffix++
+
+		if strings.HasPrefix(r, match) {
+			return r, suffix
+		}
+	}
+
+	return "Found nothing", suffix
 }
