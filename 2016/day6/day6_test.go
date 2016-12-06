@@ -20,6 +20,11 @@ var test = `eedadn
 	enarar`
 
 func ExampleSolution_1() {
-	fmt.Println(errorCorrect(test))
+	fmt.Println(ecMax(test))
 	// Output: easter
+}
+
+func ExampleSolution_2() {
+	fmt.Println(ecMin(test))
+	// Output: advent
 }

@@ -11,10 +11,32 @@ import (
 
 func Solution() string {
 	return fmt.Sprintf("Part 1: %s, Part 2: %s",
-		errorCorrect(data), "not yet solved")
+		ecMax(data), ecMin(data))
 }
 
-func errorCorrect(input string) string {
+func ecMax(input string) string {
+	msg := ""
+
+	for _, f := range buildFrequencies(input) {
+		sort.Sort(f)
+		msg = msg + f[0].Char
+	}
+
+	return msg
+}
+
+func ecMin(input string) string {
+	msg := ""
+
+	for _, f := range buildFrequencies(input) {
+		sort.Sort(f)
+		msg = msg + f[len(f)-1].Char
+	}
+
+	return msg
+}
+
+func buildFrequencies(input string) frequency.Frequencies {
 	lines := strings.Split(input, "\n")
 	counts := make([]map[string]int, len(strings.TrimSpace(lines[0])))
 
@@ -28,13 +50,5 @@ func errorCorrect(input string) string {
 		}
 	}
 
-	msg := ""
-	frequencies := frequency.New(counts)
-
-	for _, f := range frequencies {
-		sort.Sort(f)
-		msg = msg + f[0].Char
-	}
-
-	return msg
+	return frequency.New(counts)
 }
