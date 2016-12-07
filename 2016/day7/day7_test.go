@@ -65,3 +65,23 @@ func ExampleSolution_12() {
 	fmt.Println(supportsTLS("nnevzrqtilosoamp[korgdgnaogoonln]ojjmrvbhjjylrnc[dzpncsqmuzsykyyxlru]ruvcsmwpqvsgkrd[ivjfkyskzxjlodhrcf]gaohcofquvhuyyu"))
 	// Output: true
 }
+
+func ExampleSolution_13() {
+	fmt.Println(supportsSSL("aba[bab]xyz"))
+	// Output: true
+}
+
+func ExampleSolution_14() {
+	fmt.Println(supportsSSL("xyx[xyx]xyx"))
+	// Output: false
+}
+
+func ExampleSolution_15() {
+	fmt.Println(supportsSSL("aaa[kek]eke"))
+	// Output: true
+}
+
+func ExampleSolution_16() {
+	fmt.Println(supportsSSL("zazbz[bzb]cdb"))
+	// Output: true
+}
