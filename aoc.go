@@ -13,6 +13,7 @@ import (
 	"github.com/domdavis/adventofcode/2016/day4"
 	"github.com/domdavis/adventofcode/2016/day5"
 	"github.com/domdavis/adventofcode/2016/day6"
+	"github.com/domdavis/adventofcode/2016/day7"
 )
 
 var year = flag.Int("year", 0, "The year to display")
@@ -26,6 +27,7 @@ var solutions = map[int]map[int]func() string{
 		4: day4.Solution,
 		5: day5.Solution,
 		6: day6.Solution,
+		7: day7.Solution,
 	},
 }
 
