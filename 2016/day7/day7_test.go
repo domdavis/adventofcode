@@ -3,21 +3,65 @@ package day7
 import "fmt"
 
 func ExampleSolution_1() {
-	fmt.Println(abbaSupportCount("abba[mnop]qrst"))
-	// Output: 1
+	fmt.Println(supportsTLS("abba[mnop]qrst"))
+	// Output: true
 }
 
 func ExampleSolution_2() {
-	fmt.Println(abbaSupportCount("abcd[bddb]xyyx"))
-	// Output: 0
+	fmt.Println(supportsTLS("abcd[bddb]xyyx"))
+	// Output: false
 }
 
 func ExampleSolution_3() {
-	fmt.Println(abbaSupportCount("aaaa[qwer]tyui"))
-	// Output: 0
+	fmt.Println(supportsTLS("aaaa[qwer]tyui"))
+	// Output: false
 }
 
 func ExampleSolution_4() {
-	fmt.Println(abbaSupportCount("ioxxoj[asdfgh]zxcvbn"))
-	// Output: 1
+	fmt.Println(supportsTLS("ioxxoj[asdfgh]zxcvbn"))
+	// Output: true
+}
+
+func ExampleSolution_5() {
+	input := `abba[mnop]qrst
+	abcd[bddb]xyyx
+	aaaa[qwer]tyui
+	ioxxoj[asdfgh]zxcvbn`
+	fmt.Println(tlsSupportCount(input))
+	// Output: 2
+}
+
+func ExampleSolution_6() {
+	fmt.Println(supportsTLS("uvdgeatxkofgoyoi"))
+	// Output: false
+}
+
+func ExampleSolution_7() {
+	fmt.Println(supportsTLS("bxrcozuxifgevmog"))
+	// Output: false
+}
+
+func ExampleSolution_8() {
+	fmt.Println(supportsTLS("lknaffpzamlkufgt[uvdgeatxkofgoyoi]ajtqcsfdarjrddrzo[bxrcozuxifgevmog]rlyfschtnrklzufjzm"))
+	// Output: true
+}
+
+func ExampleSolution_9() {
+	fmt.Println(supportsTLS("oxpnarespssxlvbhe[mjactxdxwrjxjoa]aodrhgqmztemdxtbelo[vuslqwnngueagez]olwrulgbcmflenua"))
+	// Output: false
+}
+
+func ExampleSolution_10() {
+	fmt.Println(supportsTLS("tnntncwjwkepyjjj[rhiklabfhxebqoxjjd]nccutnmjduptofslfw[ztvcsayffkslzawquzf]bzicdywymajrjihcc[eaxrssfvhfvbswpqley]itikrgohakoqnmbxv"))
+	// Output: true
+}
+
+func ExampleSolution_11() {
+	fmt.Println(supportsTLS("xtxspkgfoepqquwnf[viivstflpbvqrhmyt]gormtajywcijwfbpmo[jnkgkcuhodivxggiw]fdpkuzlipozqwtiwiq"))
+	// Output: false
+}
+
+func ExampleSolution_12() {
+	fmt.Println(supportsTLS("nnevzrqtilosoamp[korgdgnaogoonln]ojjmrvbhjjylrnc[dzpncsqmuzsykyyxlru]ruvcsmwpqvsgkrd[ivjfkyskzxjlodhrcf]gaohcofquvhuyyu"))
+	// Output: true
 }
