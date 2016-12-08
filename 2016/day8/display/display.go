@@ -3,6 +3,7 @@ package display
 import (
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 type screen [][]bool
@@ -14,9 +15,9 @@ rect 3x1
 */
 
 var operations = map[*regexp.Regexp]func(screen, int, int){
-	regexp.MustCompile(`rect ([0-9]+)x([0-9+])`):               screen.rectangle,
-	regexp.MustCompile(`rotate row y=([0-9]+) by ([0-9+])`):    screen.rotateRow,
-	regexp.MustCompile(`rotate column x=([0-9]+) by ([0-9+])`): screen.rotateColumn,
+	regexp.MustCompile(`rect ([0-9]+)x([0-9+]+)`):               screen.rectangle,
+	regexp.MustCompile(`rotate row y=([0-9]+) by ([0-9+]+)`):    screen.rotateRow,
+	regexp.MustCompile(`rotate column x=([0-9]+) by ([0-9+]+)`): screen.rotateColumn,
 }
 
 func New(x, y int) screen {
@@ -37,6 +38,12 @@ func (s screen) Transform(op string) {
 			f(s, a, b)
 			return
 		}
+	}
+}
+
+func (s screen) BulkTransform(ops string) {
+	for _, op := range strings.Split(ops, "\n") {
+		s.Transform(op)
 	}
 }
 
@@ -71,9 +78,9 @@ func (s screen) String() string {
 }
 
 func (s screen) rectangle(w, h int) {
-	for x := 0; x < w; x++ {
-		for y := 0; y < h; y++ {
-			s[x][y] = true
+	for y := 0; y < h; y++ {
+		for x := 0; x < w; x++ {
+			s[y][x] = true
 		}
 	}
 }
