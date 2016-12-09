@@ -9,8 +9,8 @@ import (
 var marker = regexp.MustCompile(`\((\d+)x(\d+)\)`)
 
 func Solution() string {
-	return fmt.Sprintf("Part 1: %d, Part 2: %s",
-		len(decode(data)), "Not yet done")
+	return fmt.Sprintf("Part 1: %d, Part 2: %d",
+		len(decode(data)), v2DecompressedLength(data))
 }
 
 func decode(input string) string {
@@ -34,6 +34,29 @@ func decode(input string) string {
 	}
 
 	return output
+}
+
+func v2DecompressedLength(input string) int {
+	count := 0
+	for i := 0; i < len(input); i++ {
+		c := string(input[i])
+
+		if c != "(" {
+			count++
+		} else {
+			length, next, repeat := getMarker(input[i:])
+			i += length
+			s := input[i : i+next]
+
+			for ; repeat > 0; repeat-- {
+				count += v2DecompressedLength(s)
+			}
+
+			i += next - 1
+		}
+	}
+
+	return count
 }
 
 func getMarker(input string) (int, int, int) {
