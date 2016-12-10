@@ -1,6 +1,10 @@
 package day10
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/domdavis/adventofcode/2016/day10/parser"
+)
 
 func ExampleSolution_1() {
 	input := `value 5 goes to bot 2
@@ -9,6 +13,6 @@ value 3 goes to bot 1
 bot 1 gives low to output 1 and high to bot 0
 bot 0 gives low to output 2 and high to output 0
 value 2 goes to bot 2`
-	fmt.Println(find(input, 5, 2))
+	fmt.Println(parser.Parse(input, 5, 2))
 	// Output: 2
 }
