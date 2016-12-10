@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/domdavis/adventofcode/2016/day1"
+	"github.com/domdavis/adventofcode/2016/day10"
 	"github.com/domdavis/adventofcode/2016/day2"
 	"github.com/domdavis/adventofcode/2016/day3"
 	"github.com/domdavis/adventofcode/2016/day4"
@@ -23,15 +24,16 @@ var day = flag.Int("day", 0, "The day to display")
 
 var solutions = map[int]map[int]func() string{
 	2016: {
-		1: day1.Solution,
-		2: day2.Solution,
-		3: day3.Solution,
-		4: day4.Solution,
-		5: day5.Solution,
-		6: day6.Solution,
-		7: day7.Solution,
-		8: day8.Solution,
-		9: day9.Solution,
+		1:  day1.Solution,
+		2:  day2.Solution,
+		3:  day3.Solution,
+		4:  day4.Solution,
+		5:  day5.Solution,
+		6:  day6.Solution,
+		7:  day7.Solution,
+		8:  day8.Solution,
+		9:  day9.Solution,
+		10: day10.Solution,
 	},
 }
 
