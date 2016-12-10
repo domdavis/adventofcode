@@ -3,6 +3,8 @@ package bot
 import (
 	"regexp"
 	"strconv"
+
+	"github.com/domdavis/adventofcode/2016/day10/output"
 )
 
 type bot struct {
@@ -80,5 +82,7 @@ func (b *bot) process() {
 func (b *bot) give(r, i string, v int) {
 	if r == "bot" {
 		Bot(i).Receive(v)
+	} else {
+		output.Give(i, v)
 	}
 }
